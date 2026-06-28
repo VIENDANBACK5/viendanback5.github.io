@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Đoàn Ngọc Chung — AI Researcher-in-Training</title>
+<meta name="description" content="Trang nghiên cứu cá nhân của Đoàn Ngọc Chung — Computer Vision, Deep Learning, Transformer." />
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root{
+    --paper:#FAFAF7;
+    --ink:#15130F;
+    --ink-soft:#55524B;
+    --ink-faint:#8C887E;
+    --rule:#DBD7CC;
+    --accent:#7A1F1F;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4', Georgia, serif;
+    line-height:1.5;
+  }
+  a{color:inherit;}
+  h1,h2,h3{font-family:'Fraunces', serif; font-optical-sizing:auto; margin:0; font-weight:500;}
+  .mono{font-family:'JetBrains Mono', monospace; letter-spacing:.02em;}
+
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+  /* ---- layout shell ---- */
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+  header.masthead{border-bottom:1px solid var(--rule);}
+  .masthead-top{display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:8px; padding:28px 0 8px;}
+  .masthead-top h1{font-size:1.9rem; letter-spacing:-.01em;}
+  .masthead-sub{padding-bottom:10px; color:var(--ink-soft); font-size:.98rem;}
+  .masthead-tag{padding-bottom:22px; font-style:italic; color:#3A3833; font-size:1.02rem;}
+
+  /* ---- mobile toc strip ---- */
+  nav.toc-strip{
+    display:none;
+    position:sticky; top:0; z-index:20;
+    background:var(--paper);
+    border-bottom:1px solid var(--rule);
+    overflow-x:auto;
+  }
+  nav.toc-strip .inner{display:flex; gap:20px; padding:12px 24px; white-space:nowrap; font-size:.78rem;}
+  nav.toc-strip a{text-decoration:none; color:var(--ink-faint);}
+  nav.toc-strip a.active{color:var(--accent);}
+
+  /* ---- main two-col layout ---- */
+  .layout{display:flex; gap:64px; padding:44px 0 80px; align-items:flex-start;}
+  aside.sidebar{width:200px; flex:0 0 200px; position:sticky; top:40px;}
+  .sidebar-label{font-size:.72rem; text-transform:uppercase; color:var(--ink-faint); margin-bottom:10px; letter-spacing:.08em;}
+  .toc-item{
+    display:flex; align-items:baseline; gap:8px;
+    width:100%; padding:6px 0; text-decoration:none; color:var(--ink-soft); font-size:.92rem;
+  }
+  .toc-item .num{color:var(--ink-faint); flex-shrink:0;}
+  .toc-item .leader{flex:1 1 auto; border-bottom:1px dotted var(--ink-faint); opacity:.5; transform:translateY(-4px);}
+  .toc-item.active{color:var(--accent);}
+  .toc-item.active .leader{border-color:var(--accent); opacity:.7;}
+
+  .sidebar-links{margin-top:36px; padding-top:20px; border-top:1px solid var(--rule); display:flex; flex-direction:column; gap:10px; font-size:.9rem;}
+  .sidebar-links a{text-decoration:none;}
+  .sidebar-links a:hover{color:var(--accent);}
+
+  main{flex:1; min-width:0; display:flex; flex-direction:column; gap:60px;}
+
+  section{scroll-margin-top:70px; opacity:0; transform:translateY(10px); transition:opacity .6s ease, transform .6s ease;}
+  section.in-view{opacity:1; transform:none;}
+
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:18px;}
+  .sec-head .n{color:var(--accent); font-size:.92rem;}
+  .sec-head h2{font-size:1.4rem; letter-spacing:-.01em;}
+  .sec-head .rule{flex:1 1 auto; border-bottom:1px solid var(--rule); transform:translateY(-5px);}
+
+  p{color:#2C2A25; margin:0 0 12px;}
+  p:last-child{margin-bottom:0;}
+
+  .pill-list{display:flex; flex-direction:column; gap:18px;}
+  .pill{display:flex; gap:16px;}
+  .pill .idx{font-size:.85rem; color:var(--ink-faint); padding-top:2px; flex-shrink:0;}
+  .pill h3{font-size:1.05rem; margin-bottom:4px;}
+  .pill p{color:var(--ink-soft); font-size:.95rem;}
+
+  ol.pubs{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:18px;}
+  ol.pubs li{display:flex; gap:14px; padding-bottom:18px; border-bottom:1px solid #ECE9E2;}
+  ol.pubs li:last-child{border-bottom:none; padding-bottom:0;}
+  ol.pubs .idx{font-size:.85rem; color:var(--ink-faint); padding-top:2px; flex-shrink:0;}
+  ol.pubs h3{font-size:1.02rem; font-weight:600; font-family:'Source Serif 4', serif; margin-bottom:3px;}
+  ol.pubs .meta{font-size:.88rem; color:var(--ink-soft); margin-bottom:6px;}
+  ol.pubs .links{display:flex; gap:14px; font-size:.82rem;}
+  ol.pubs .links a{text-decoration:underline dotted; text-decoration-color:var(--ink-faint); text-underline-offset:3px;}
+  ol.pubs .links a:hover{color:var(--accent); text-decoration-color:var(--accent);}
+
+  .skill-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .skill-grid h3{font-size:.95rem; margin-bottom:8px; font-family:'Source Serif 4', serif; font-weight:600;}
+  .skill-grid ul{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:4px; font-size:.92rem; color:var(--ink-soft);}
+
+  .contact-links{display:none; flex-wrap:wrap; gap:18px; margin-top:14px; font-size:.92rem;}
+  .contact-links a{text-decoration:none;}
+  .contact-links a:hover{color:var(--accent);}
+
+  footer{border-top:1px solid var(--rule);}
+  footer .inner{display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; padding:20px 0; font-size:.78rem; color:var(--ink-faint);}
+
+  @media (max-width: 880px){
+    .layout{flex-direction:column; gap:32px;}
+    aside.sidebar{display:none;}
+    nav.toc-strip{display:block;}
+    .contact-links{display:flex;}
+    .skill-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width: 480px){
+    .skill-grid{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    section{transition:none; opacity:1; transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     SỬA THÔNG TIN CÁ NHÂN NGAY TẠI ĐÂY (email, link CV, v.v.)
+     ============================================================ -->
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-top">
+      <h1>Đoàn Ngọc Chung</h1>
+      <span class="mono masthead-sub">github.com/VIENDANBACK5</span>
+    </div>
+    <p class="masthead-sub">Sinh viên CNTT định hướng nghiên cứu AI · PTIT</p>
+    <p class="masthead-tag">AI Researcher‑in‑Training — Computer Vision &amp; Deep Learning</p>
+  </div>
+</header>
+
+<nav class="toc-strip" id="tocStrip">
+  <div class="inner mono">
+    <a href="#about" data-id="about">§1 Giới thiệu</a>
+    <a href="#interests" data-id="interests">§2 Hướng nghiên cứu</a>
+    <a href="#projects" data-id="projects">§3 Dự án chọn lọc</a>
+    <a href="#skills" data-id="skills">§4 Kỹ năng</a>
+    <a href="#contact" data-id="contact">§5 Liên hệ</a>
+  </div>
+</nav>
+
+<div class="wrap layout">
+  <aside class="sidebar">
+    <p class="sidebar-label mono">Mục lục</p>
+    <nav id="tocSidebar">
+      <a class="toc-item" href="#about" data-id="about"><span class="num mono">§1</span><span>Giới thiệu</span><span class="leader"></span></a>
+      <a class="toc-item" href="#interests" data-id="interests"><span class="num mono">§2</span><span>Hướng nghiên cứu</span><span class="leader"></span></a>
+      <a class="toc-item" href="#projects" data-id="projects"><span class="num mono">§3</span><span>Dự án chọn lọc</span><span class="leader"></span></a>
+      <a class="toc-item" href="#skills" data-id="skills"><span class="num mono">§4</span><span>Kỹ năng</span><span class="leader"></span></a>
+      <a class="toc-item" href="#contact" data-id="contact"><span class="num mono">§5</span><span>Liên hệ</span><span class="leader"></span></a>
+    </nav>
+    <div class="sidebar-links">
+      <a href="https://github.com/VIENDANBACK5" target="_blank" rel="noopener">↗ GitHub</a>
+      <a href="https://www.facebook.com/oanngocchung.119045" target="_blank" rel="noopener">↗ Facebook</a>
+      <a href="mailto:your-email@example.com">✉ Email</a>
+    </div>
+  </aside>
+
+  <main>
+    <section id="about">
+      <div class="sec-head"><span class="n mono">§1</span><h2>Giới thiệu</h2><span class="rule"></span></div>
+      <p>Tôi là sinh viên Công nghệ thông tin theo định hướng nghiên cứu AI, với nền tảng về toán học, máy học và học sâu. Trọng tâm hiện tại là thị giác máy tính — đặc biệt là phát hiện thay đổi (change detection), học biểu diễn đặc trưng, và các kiến trúc dựa trên Transformer.</p>
+      <p>Tôi coi trọng thực nghiệm chặt chẽ, baseline rõ ràng, và cách làm nghiên cứu hướng dữ liệu (data‑centric) hơn là chạy theo những con số ấn tượng nhưng thiếu giải thích.</p>
+    </section>
+
+    <section id="interests">
+      <div class="sec-head"><span class="n mono">§2</span><h2>Hướng nghiên cứu</h2><span class="rule"></span></div>
+      <div class="pill-list">
+        <div class="pill">
+          <span class="idx mono">01</span>
+          <div><h3>Thị giác máy tính cho ảnh viễn thám</h3><p>Phát hiện thay đổi (change detection), phân đoạn ngữ nghĩa trên dữ liệu remote sensing.</p></div>
+        </div>
+        <div class="pill">
+          <span class="idx mono">02</span>
+          <div><h3>Kiến trúc lai CNN–Transformer</h3><p>Kết hợp đặc trưng cục bộ của CNN với khả năng mô hình hoá quan hệ xa của attention.</p></div>
+        </div>
+        <div class="pill">
+          <span class="idx mono">03</span>
+          <div><h3>Cơ chế attention &amp; mô hình hoá theo token</h3><p>Tìm hiểu cách attention học được các biểu diễn có ý nghĩa trong bài toán thị giác.</p></div>
+        </div>
+        <div class="pill">
+          <span class="idx mono">04</span>
+          <div><h3>Học máy hướng dữ liệu (data‑centric)</h3><p>Phân tích lỗi, chất lượng nhãn, và thiết kế thực nghiệm có thể tái lập.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="sec-head"><span class="n mono">§3</span><h2>Dự án chọn lọc</h2><span class="rule"></span></div>
+      <ol class="pubs">
+        <li>
+          <span class="idx mono">[1]</span>
+          <div>
+            <h3>Unet_EarlyFusion4RS</h3>
+            <p class="meta">U‑Net với early fusion cho ảnh viễn thám, hướng tới bài toán phát hiện thay đổi · Python, PyTorch</p>
+            <div class="links mono"><a href="https://github.com/VIENDANBACK5/Unet_EarlyFusion4RS" target="_blank" rel="noopener">Repo</a></div>
+          </div>
+        </li>
+        <li>
+          <span class="idx mono">[2]</span>
+          <div>
+            <h3>GoEmotions_model</h3>
+            <p class="meta">Mô hình phân loại cảm xúc văn bản trên bộ dữ liệu GoEmotions · Python</p>
+            <div class="links mono"><a href="https://github.com/VIENDANBACK5/GoEmotions_model" target="_blank" rel="noopener">Repo</a></div>
+          </div>
+        </li>
+        <li>
+          <span class="idx mono">[3]</span>
+          <div>
+            <h3>Generative_AI_Project</h3>
+            <p class="meta">Thực nghiệm với các mô hình sinh (generative models) · Python</p>
+            <div class="links mono"><a href="https://github.com/VIENDANBACK5/Generative_AI_Project" target="_blank" rel="noopener">Repo</a></div>
+          </div>
+        </li>
+        <li>
+          <span class="idx mono">[4]</span>
+          <div>
+            <h3>ML_AI</h3>
+            <p class="meta">Tổng hợp bài tập và thử nghiệm máy học · Jupyter Notebook</p>
+            <div class="links mono"><a href="https://github.com/VIENDANBACK5/ML_AI" target="_blank" rel="noopener">Repo</a></div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="skills">
+      <div class="sec-head"><span class="n mono">§4</span><h2>Kỹ năng</h2><span class="rule"></span></div>
+      <div class="skill-grid">
+        <div>
+          <h3>Lập trình &amp; ML</h3>
+          <ul><li>Python, PyTorch</li><li>NumPy, OpenCV</li><li>Pipeline huấn luyện &amp; ablation study</li></ul>
+        </div>
+        <div>
+          <h3>Khái niệm AI / CV</h3>
+          <ul><li>CNN (ResNet, feature pyramid)</li><li>Transformer (Encoder–Decoder, Attention)</li><li>Siamese Network</li><li>Precision, Recall, F1, IoU</li></ul>
+        </div>
+        <div>
+          <h3>Công cụ</h3>
+          <ul><li>Git &amp; GitHub</li><li>Linux</li><li>LaTeX</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="sec-head"><span class="n mono">§5</span><h2>Liên hệ</h2><span class="rule"></span></div>
+      <p>Tôi luôn cởi mở với các trao đổi, góp ý hoặc cơ hội hợp tác nghiên cứu trong lĩnh vực thị giác máy tính và học sâu. Cách nhanh nhất để liên hệ là qua GitHub hoặc email.</p>
+      <div class="contact-links mono">
+        <a href="https://github.com/VIENDANBACK5" target="_blank" rel="noopener">↗ GitHub</a>
+        <a href="https://www.facebook.com/oanngocchung.119045" target="_blank" rel="noopener">↗ Facebook</a>
+        <a href="mailto:your-email@example.com">✉ Email</a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <div class="wrap inner mono">
+    <span>rev. 2026.06</span>
+    <span>built for github.io</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var sections = Array.prototype.slice.call(document.querySelectorAll('main section'));
+    var tocItems = Array.prototype.slice.call(document.querySelectorAll('.toc-item, .toc-strip a'));
+
+    // fade-in on scroll
+    var fadeObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in-view'); fadeObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    sections.forEach(function(s){ fadeObs.observe(s); });
+
+    // scrollspy
+    var spyObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var id = e.target.id;
+          tocItems.forEach(function(a){
+            a.classList.toggle('active', a.getAttribute('data-id') === id);
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px', threshold: 0 });
+    sections.forEach(function(s){ spyObs.observe(s); });
+  })();
+</script>
+
+</body>
+</html>
