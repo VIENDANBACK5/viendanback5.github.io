@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Đoàn Ngọc Chung — AI Researcher-in-Training</title>
-<meta name="description" content="Trang nghiên cứu cá nhân của Đoàn Ngọc Chung — Computer Vision, Deep Learning, Transformer." />
+<title>Đoàn Ngọc Chung — Remote Sensing &amp; Human-inspired AI</title>
+<meta name="description" content="Trang nghiên cứu cá nhân của Đoàn Ngọc Chung — Semantic Change Detection, Remote Sensing, World Models, Human-inspired AI." />
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -89,6 +89,19 @@
   .pill h3{font-size:1.05rem; margin-bottom:4px;}
   .pill p{color:var(--ink-soft); font-size:.95rem;}
 
+  blockquote.thesis{
+    margin:18px 0 0;
+    padding:4px 0 4px 18px;
+    border-left:2px solid var(--accent);
+    font-style:italic;
+    color:#3A3833;
+    font-size:.98rem;
+  }
+
+  .group{margin-bottom:30px;}
+  .group:last-child{margin-bottom:0;}
+  .group-title{font-size:.72rem; text-transform:uppercase; color:var(--accent); letter-spacing:.08em; margin-bottom:14px;}
+
   ol.pubs{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:18px;}
   ol.pubs li{display:flex; gap:14px; padding-bottom:18px; border-bottom:1px solid #ECE9E2;}
   ol.pubs li:last-child{border-bottom:none; padding-bottom:0;}
@@ -99,7 +112,7 @@
   ol.pubs .links a{text-decoration:underline dotted; text-decoration-color:var(--ink-faint); text-underline-offset:3px;}
   ol.pubs .links a:hover{color:var(--accent); text-decoration-color:var(--accent);}
 
-  .skill-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .skill-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
   .skill-grid h3{font-size:.95rem; margin-bottom:8px; font-family:'Source Serif 4', serif; font-weight:600;}
   .skill-grid ul{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:4px; font-size:.92rem; color:var(--ink-soft);}
 
@@ -139,7 +152,7 @@
       <span class="mono masthead-sub">github.com/VIENDANBACK5</span>
     </div>
     <p class="masthead-sub">Sinh viên CNTT định hướng nghiên cứu AI · PTIT</p>
-    <p class="masthead-tag">AI Researcher‑in‑Training — Computer Vision &amp; Deep Learning</p>
+    <p class="masthead-tag">Remote Sensing · World Models · Human‑inspired AI</p>
   </div>
 </header>
 
@@ -173,28 +186,82 @@
   <main>
     <section id="about">
       <div class="sec-head"><span class="n mono">§1</span><h2>Giới thiệu</h2><span class="rule"></span></div>
-      <p>Tôi là sinh viên Công nghệ thông tin theo định hướng nghiên cứu AI, với nền tảng về toán học, máy học và học sâu. Trọng tâm hiện tại là thị giác máy tính — đặc biệt là phát hiện thay đổi (change detection), học biểu diễn đặc trưng, và các kiến trúc dựa trên Transformer.</p>
-      <p>Tôi coi trọng thực nghiệm chặt chẽ, baseline rõ ràng, và cách làm nghiên cứu hướng dữ liệu (data‑centric) hơn là chạy theo những con số ấn tượng nhưng thiếu giải thích.</p>
+      <p>Hướng nghiên cứu chính của tôi là <strong>Remote Sensing</strong>, cụ thể là bài toán <strong>Semantic Change Detection (SCD)</strong> — không chỉ phát hiện pixel nào thay đổi giữa hai ảnh, mà còn phân biệt loại thay đổi, hiểu ngữ nghĩa của thay đổi, và loại bỏ pseudo‑change.</p>
+      <p>Từ bài toán này tôi mở rộng sang những câu hỏi rộng hơn: con người nhìn và so sánh hai ảnh như thế nào, và liệu các cơ chế nhận thức đó — context, memory, reasoning — có đưa được vào kiến trúc thị giác máy tính hay không. Đó là lý do tôi quan tâm tới <strong>World Models</strong>, <strong>Vision‑Language reasoning</strong>, và rộng hơn là <strong>Human‑inspired AI</strong>.</p>
+      <blockquote class="thesis">Áp dụng các cơ chế nhận thức của con người — context, memory, world knowledge, reasoning — để cải thiện các mô hình Vision / World Model, đặc biệt cho bài toán Semantic Change Detection trong Remote Sensing.</blockquote>
     </section>
 
     <section id="interests">
       <div class="sec-head"><span class="n mono">§2</span><h2>Hướng nghiên cứu</h2><span class="rule"></span></div>
-      <div class="pill-list">
-        <div class="pill">
-          <span class="idx mono">01</span>
-          <div><h3>Thị giác máy tính cho ảnh viễn thám</h3><p>Phát hiện thay đổi (change detection), phân đoạn ngữ nghĩa trên dữ liệu remote sensing.</p></div>
+      <div class="group">
+        <p class="group-title mono">Remote Sensing &amp; Computer Vision — hướng chính</p>
+        <div class="pill-list">
+          <div class="pill">
+            <span class="idx mono">01</span>
+            <div><h3>Semantic Change Detection (SCD)</h3><p>Không chỉ phát hiện thay đổi ở mức pixel mà còn phân loại, hiểu ngữ nghĩa thay đổi và loại bỏ pseudo‑change.</p></div>
+          </div>
+          <div class="pill">
+            <span class="idx mono">02</span>
+            <div><h3>Multi‑temporal &amp; bi‑temporal analysis</h3><p>Trích xuất đặc trưng theo thời gian và feature alignment giữa các cặp ảnh chụp khác thời điểm.</p></div>
+          </div>
+          <div class="pill">
+            <span class="idx mono">03</span>
+            <div><h3>Change representation</h3><p>So sánh các cách biểu diễn thay đổi: feature difference, concatenate, cross‑attention, Siamese network.</p></div>
+          </div>
+          <div class="pill">
+            <span class="idx mono">04</span>
+            <div><h3>Geometry‑aware &amp; shape descriptor</h3><p>Shape, boundary, contour, polygon, topology — vì sao thông tin hình học giúp giảm false positive tốt hơn pixel thuần.</p></div>
+          </div>
+          <div class="pill">
+            <span class="idx mono">05</span>
+            <div><h3>Context‑aware representation</h3><p>Đưa object xung quanh, scene understanding vào mô hình thay vì chỉ nhìn vùng thay đổi cô lập.</p></div>
+          </div>
         </div>
-        <div class="pill">
-          <span class="idx mono">02</span>
-          <div><h3>Kiến trúc lai CNN–Transformer</h3><p>Kết hợp đặc trưng cục bộ của CNN với khả năng mô hình hoá quan hệ xa của attention.</p></div>
+      </div>
+
+      <div class="group">
+        <p class="group-title mono">AI Reasoning &amp; World Models</p>
+        <div class="pill-list">
+          <div class="pill">
+            <span class="idx mono">01</span>
+            <div><h3>World Models</h3><p>Đọc và đối chiếu các hướng như DINO‑WM cho latent‑state prediction và planning, hướng tới ứng dụng cho Remote Sensing.</p></div>
+          </div>
+          <div class="pill">
+            <span class="idx mono">02</span>
+            <div><h3>Vision‑Language(‑Action)</h3><p>Quan tâm tới VLM/VLA, embodied AI — cầu nối giữa biểu diễn thị giác và suy luận ngôn ngữ.</p></div>
+          </div>
+          <div class="pill">
+            <span class="idx mono">03</span>
+            <div><h3>Self‑supervised learning</h3><p>Học biểu diễn không cần nhãn, làm nền cho cả World Model và SCD.</p></div>
+          </div>
         </div>
-        <div class="pill">
-          <span class="idx mono">03</span>
-          <div><h3>Cơ chế attention &amp; mô hình hoá theo token</h3><p>Tìm hiểu cách attention học được các biểu diễn có ý nghĩa trong bài toán thị giác.</p></div>
+      </div>
+
+      <div class="group">
+        <p class="group-title mono">Human‑inspired AI</p>
+        <div class="pill-list">
+          <div class="pill">
+            <span class="idx mono">01</span>
+            <div><h3>Context memory</h3><p>AI hiện tại thường thiếu trí nhớ ngữ cảnh dài hạn — câu hỏi đặt ra là có thể xây context memory cho vision model không.</p></div>
+          </div>
+          <div class="pill">
+            <span class="idx mono">02</span>
+            <div><h3>Nhận thức thị giác của con người</h3><p>Visual cortex → object → context → memory → reasoning — thử mô phỏng pipeline này thành kiến trúc deep learning.</p></div>
+          </div>
         </div>
-        <div class="pill">
-          <span class="idx mono">04</span>
-          <div><h3>Học máy hướng dữ liệu (data‑centric)</h3><p>Phân tích lỗi, chất lượng nhãn, và thiết kế thực nghiệm có thể tái lập.</p></div>
+      </div>
+
+      <div class="group">
+        <p class="group-title mono">LLM &amp; Document Intelligence</p>
+        <div class="pill-list">
+          <div class="pill">
+            <span class="idx mono">01</span>
+            <div><h3>RAG pipeline</h3><p>Document → chunk → metadata → embedding → retrieval, áp dụng cho văn bản hành chính, pháp lý tiếng Việt.</p></div>
+          </div>
+          <div class="pill">
+            <span class="idx mono">02</span>
+            <div><h3>Research agent</h3><p>Hướng tới xây trợ lý nghiên cứu riêng thay vì chỉ dùng chatbot có sẵn.</p></div>
+          </div>
         </div>
       </div>
     </section>
@@ -251,6 +318,10 @@
         <div>
           <h3>Công cụ</h3>
           <ul><li>Git &amp; GitHub</li><li>Linux</li><li>LaTeX</li></ul>
+        </div>
+        <div>
+          <h3>LLM / Agent tooling</h3>
+          <ul><li>LangChain</li><li>RAG pipeline</li><li>Vector embedding &amp; retrieval</li></ul>
         </div>
       </div>
     </section>
